@@ -1,0 +1,23 @@
+.header-container {
+  background-color: #1c2b35;
+  height: 80px;
+}
+
+.header-components {
+  width: min(90%, 1300px);
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.header-list {
+  display: flex;
+  gap: 20px;
+}
+
+.header-list a {
+  color: white;
+  cursor: pointer;
+}
