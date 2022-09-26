@@ -1,0 +1,44 @@
+.product {
+  border: 1px solid #95a0a7;
+  border-radius: 8px;
+  position: relative;
+  width: 300px;
+  height: 500px;
+}
+
+.product-content {
+  margin-inline: 6px;
+}
+
+.product-content h4 {
+  margin-top: 5px;
+  margin-bottom: 8px;
+}
+
+.product-content h5 {
+  margin-bottom: 13px;
+}
+
+.product img {
+  width: 286px;
+  height: 286px;
+  margin-top: 6px;
+  border-radius: 8px;
+}
+
+.product button {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  background-color: #ffe0b3;
+  padding: 12px 0;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.product button:hover {
+  background-color: orange;
+}
