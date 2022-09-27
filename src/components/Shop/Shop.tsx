@@ -1,4 +1,8 @@
 import { useEffect, useState } from "react";
+import {
+  addToLocalStorage,
+  getLocalStorageCart,
+} from "../../utilities/localStorage";
 import { Cart } from "../Cart/Cart";
 import { Product } from "../Product/Product";
 import "./Shop.css";
@@ -30,9 +34,18 @@ export const Shop = () => {
     loadProducts();
   }, []);
 
+  useEffect(() => {
+    const storedCart = getLocalStorageCart();
+    for (const id in storedCart) {
+      const addedProduct = products.find((product) => product.id === id);
+      console.log(addedProduct);
+    }
+  }, [products]);
+
   const handleAddToCart = (product: ProductData) => {
     const newCart = [...cart, product];
     setCart(newCart);
+    addToLocalStorage(product.id);
   };
   return (
     <div className="shop-container">
