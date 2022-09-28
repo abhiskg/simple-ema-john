@@ -18,14 +18,18 @@ interface CartData {
 
 export const Cart = (props: CartData) => {
   const { cart } = props;
-  const totalPrice = cart.reduce((prev, curr) => prev + curr.price, 0);
+  const cartLength = cart.reduce((prev, curr) => prev + curr.quantity, 0);
+  const totalPrice = cart.reduce(
+    (prev, curr) => prev + curr.price * curr.quantity,
+    0
+  );
   const shippingCharge = cart.reduce((prev, curr) => prev + curr.shipping, 0);
   const tax = +(totalPrice * 0.1).toFixed(2);
   const grandTotal = totalPrice + shippingCharge + tax;
   return (
     <div>
       <h2>Oder Summary</h2>
-      <div>Selected items:{cart.length}</div>
+      <div>Selected items:{cartLength}</div>
       <div>Total Price: {totalPrice}</div>
       <div>Total Shipping Charge: {shippingCharge}</div>
       <div>Tax: {tax}</div>

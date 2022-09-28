@@ -36,14 +36,31 @@ export const Shop = () => {
 
   useEffect(() => {
     const storedCart = getLocalStorageCart();
+    const savedCart = [];
     for (const id in storedCart) {
       const addedProduct = products.find((product) => product.id === id);
-      console.log(addedProduct);
+      if (addedProduct) {
+        addedProduct.quantity = storedCart[id];
+        savedCart.push(addedProduct);
+      }
     }
+    setCart(savedCart);
   }, [products]);
 
   const handleAddToCart = (product: ProductData) => {
-    const newCart = [...cart, product];
+    const existingProduct = cart.find(
+      (cartProduct) => cartProduct.id === product.id
+    );
+    console.log(existingProduct);
+    let newCart = [];
+    if (!existingProduct) {
+      product.quantity = 1;
+      newCart = [...cart, product];
+    } else {
+      const rest = cart.filter((cartProduct) => cartProduct.id !== product.id);
+      product.quantity = product.quantity + 1;
+      newCart = [...rest, product];
+    }
     setCart(newCart);
     addToLocalStorage(product.id);
   };
