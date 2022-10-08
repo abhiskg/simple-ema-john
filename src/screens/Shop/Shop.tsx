@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
+import { Cart } from "../../components/Cart/Cart";
+import { Product } from "../../components/Product/Product";
 import {
   addToLocalStorage,
   getLocalStorageCart,
 } from "../../utilities/localStorage";
-import { Cart } from "../Cart/Cart";
-import { Product } from "../Product/Product";
+
 import "./Shop.css";
 
 interface ProductData {
