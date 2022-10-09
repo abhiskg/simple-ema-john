@@ -1,26 +1,11 @@
 import { useEffect, useState } from "react";
-import { Cart } from "../../components/Cart/Cart";
-import { Product } from "../../components/Product/Product";
+import { Cart } from "../components/Cart";
+import { Product } from "../components/Product";
+import { ProductData } from "../types/productType";
 import {
   addToLocalStorage,
   getLocalStorageCart,
-} from "../../utilities/localStorage";
-
-import "./Shop.css";
-
-interface ProductData {
-  category: string;
-  id: string;
-  img: string;
-  name: string;
-  price: number;
-  quantity: number;
-  ratings: number;
-  ratingsCount: number;
-  seller: string;
-  shipping: number;
-  stock: number;
-}
+} from "../utilities/localStorage";
 
 export const Shop = () => {
   const [products, setProducts] = useState<[] | ProductData[]>([]);
@@ -66,8 +51,8 @@ export const Shop = () => {
     addToLocalStorage(product.id);
   };
   return (
-    <div className="shop-container">
-      <div className="products-container">
+    <div className="grid grid-cols-4">
+      <div className="col-span-3 grid grid-cols-3 mt-5 custom-width mx-auto gap-5">
         {products.map((product) => (
           <Product
             key={product.id}
@@ -77,7 +62,7 @@ export const Shop = () => {
         ))}
       </div>
 
-      <div className="cart-container">
+      <div className="col-span-1 bg-secondary-100">
         <Cart cart={cart} />
       </div>
     </div>
