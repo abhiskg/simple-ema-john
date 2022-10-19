@@ -5,6 +5,8 @@ import Orders from "../screens/Orders";
 import Inventory from "../screens/Inventory";
 import About from "../screens/About";
 import { productAndCartLoader } from "../loaders/productAndCartLoader";
+import Login from "../screens/Login";
+import Register from "../screens/Register";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +29,14 @@ const router = createBrowserRouter([
       {
         path: "about",
         element: <About />,
+      },
+      {
+        path: "login",
+        element: <Login />,
+      },
+      {
+        path: "register",
+        element: <Register />,
       },
     ],
   },
