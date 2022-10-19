@@ -38,7 +38,7 @@ const removeFromLocalStorage = (id: string) => {
     const cartData = JSON.parse(storedCartData);
     if (id in cartData) {
       delete cartData[id];
-      localStorage.setItem("cart", cartData);
+      localStorage.setItem("cart", JSON.stringify(cartData));
     }
   }
 };
