@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { Cart } from "../components/Cart";
 import ReviewItem from "../components/ReviewItem";
 import { ProductData } from "../types/productType";
@@ -32,7 +32,9 @@ const Orders = () => {
         ))}
       </div>
       <div className="">
-        <Cart cart={cart} />
+        <Cart cart={cart}>
+          <Link to="/shipping">Shipping</Link>
+        </Cart>
       </div>
     </div>
   );

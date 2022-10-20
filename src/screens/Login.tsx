@@ -1,5 +1,5 @@
 import { FormEvent, useContext, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 
 const Login = () => {
@@ -11,6 +11,11 @@ const Login = () => {
   const passwordRef = useRef<HTMLInputElement>(null!);
   const formRef = useRef<HTMLFormElement>(null!);
 
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const from = location.state?.from?.pathname || "/";
+
   const handleLogin = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -21,6 +26,7 @@ const Login = () => {
       ?.signIn(email, password)
       .then(() => {
         formRef.current.reset();
+        navigate(from, { replace: true });
       })
       .catch((error: any) => {
         setError(error.message);

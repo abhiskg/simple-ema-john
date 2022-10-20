@@ -7,6 +7,8 @@ import About from "../screens/About";
 import { productAndCartLoader } from "../loaders/productAndCartLoader";
 import Login from "../screens/Login";
 import Register from "../screens/Register";
+import Shipping from "../screens/Shipping";
+import PrivateRoute from "../routes/PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -24,7 +26,11 @@ const router = createBrowserRouter([
       },
       {
         path: "inventory",
-        element: <Inventory />,
+        element: (
+          <PrivateRoute>
+            <Inventory />
+          </PrivateRoute>
+        ),
       },
       {
         path: "about",
@@ -37,6 +43,14 @@ const router = createBrowserRouter([
       {
         path: "register",
         element: <Register />,
+      },
+      {
+        path: "shipping",
+        element: (
+          <PrivateRoute>
+            <Shipping />
+          </PrivateRoute>
+        ),
       },
     ],
   },

@@ -18,6 +18,7 @@ interface UserContextProviderProps {
 
 interface UserContextProps {
   user: null | User;
+  loading: boolean;
   signUp: (email: string, password: string) => Promise<UserCredential>;
   signIn: (email: string, password: string) => Promise<UserCredential>;
   signInWithGoogle: () => Promise<UserCredential>;
@@ -29,10 +30,12 @@ export const UserContext = createContext<null | UserContextProps>(null);
 
 const UserContextProvider = ({ children }: UserContextProviderProps) => {
   const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      setLoading(false);
       console.log(currentUser);
     });
 
@@ -44,10 +47,12 @@ const UserContextProvider = ({ children }: UserContextProviderProps) => {
   const googleProvider = new GoogleAuthProvider();
 
   const signUp = (email: string, password: string) => {
+    setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
   const signIn = (email: string, password: string) => {
+    setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
 
@@ -67,7 +72,15 @@ const UserContextProvider = ({ children }: UserContextProviderProps) => {
 
   return (
     <UserContext.Provider
-      value={{ user, signIn, signUp, signInWithGoogle, logOut, updateUser }}
+      value={{
+        user,
+        loading,
+        signIn,
+        signUp,
+        signInWithGoogle,
+        logOut,
+        updateUser,
+      }}
     >
       {children}
     </UserContext.Provider>

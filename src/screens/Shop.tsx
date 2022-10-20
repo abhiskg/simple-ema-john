@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { Cart } from "../components/Cart";
 import { Product } from "../components/Product";
 import { ProductData } from "../types/productType";
@@ -63,7 +64,9 @@ export const Shop = () => {
       </div>
 
       <div className="col-span-1 bg-secondary-100">
-        <Cart cart={cart} />
+        <Cart cart={cart}>
+          <Link to="/orders">Review Orders</Link>
+        </Cart>
       </div>
     </div>
   );

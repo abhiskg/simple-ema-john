@@ -12,10 +12,10 @@ interface CartProps {
     shipping: number;
     stock: number;
   }[];
+  children: JSX.Element;
 }
 
-export const Cart = (props: CartProps) => {
-  const { cart } = props;
+export const Cart = ({ cart, children }: CartProps) => {
   const cartLength = cart.reduce((prev, curr) => prev + curr.quantity, 0);
   const totalPrice = cart.reduce(
     (prev, curr) => prev + curr.price * curr.quantity,
@@ -32,8 +32,14 @@ export const Cart = (props: CartProps) => {
       <div>Total Shipping Charge: {shippingCharge}</div>
       <div>Tax: {tax}</div>
       <h4>Grand Total: {grandTotal.toFixed(2)}</h4>
-      <button>Clear Cart</button>
-      <button>Review Order</button>
+      <div className="flex items-center gap-2 mt-5">
+        <button className="bg-orange-300 py-1.5 px-1.5 rounded font-medium">
+          Clear Cart
+        </button>
+        <button className="bg-orange-300 py-1.5 px-1.5 rounded font-medium">
+          {children}
+        </button>
+      </div>
     </div>
   );
 };
